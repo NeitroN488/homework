@@ -1,40 +1,38 @@
-import random
+import matplotlib.pyplot as plt
+# import numpy as np
 
-"""n = random.randint(2, 51)
-m = random.randint(2, 51)
-arr = []
-for i in range(n):
-    brr = []
-    for j in range(m):
-        brr.append(random.randint(1, 51))
-    arr.append(brr)
-mn = 9999999999999999999999999999
-mx = -9999999999999999999999999999
-for i in range(n):
-    sum = 0
-    for j in range(m):
-        sum += arr[i][j]
-    if sum > mx:
-        mx = sum
-        i_mx = i
-    if sum < mn:
-        mn = sum
-        i_mn = i
-print(mn, arr[i_mn])
-print(mx, arr[i_mx]) """
+# class Derivative:
 
-n = random.randint(2, 51)
-m = random.randint(2, 51)
-arr = []
-for i in range(n):
-    brr = []
-    for j in range(m):
-        brr.append(random.randint(-50, 51))
-    arr.append(brr)
-for i in range(n):
-    print(arr[i])
-for i in range(n):
-    for j in range(m):
-        arr[i][j] = (arr[i][j]) % 2
-for i in range(n):
-    print(arr[i])
+#     def init(self, func):
+#         self.func = func
+#         self.h = 1e-5
+
+#     def get(self, instance, owner):
+#         return self  
+
+#     def call(self, x):
+#         return (self.func(x + self.h) - self.func(x - self.h)) / (2 * self.h)
+
+
+# class ExponentialFunction:
+
+#     def init(self, a):
+#         self.a = a
+#         self.derivative = Derivative(self)  
+
+#     def call(self, x):
+#         return self.a * np.exp(x)
+
+# func = ExponentialFunction(2)
+# x = np.linspace(-2, 2, 100)
+# y = [func(xi) for xi in x]
+# dy = [func.derivative(xi) for xi in x]
+
+# plt.plot(x, y, label='f(x)')
+# plt.plot(x, dy, label='f\'(x)')
+# plt.xlabel('x')
+# plt.ylabel('y')
+# plt.title('Экспоненциальная функция и её производная')
+# plt.legend()
+# plt.grid(True)
+# # plt.show()
