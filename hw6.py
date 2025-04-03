@@ -1,38 +1,43 @@
 import matplotlib.pyplot as plt
-# import numpy as np
+import numpy as np
 
-# class Derivative:
+class Derivative:
+    def __init__(self, func):
+        self.func = func
+        self.h = 1e-5
 
-#     def init(self, func):
-#         self.func = func
-#         self.h = 1e-5
+    def __call__(self, x):
+        return (self.func(x + self.h) - self.func(x - self.h)) / (2 * self.h)
 
-#     def get(self, instance, owner):
-#         return self  
+    def __get__(self, instance, owner):
+        if instance is None:
+            return self
+        return lambda x: self(x)  
 
-#     def call(self, x):
-#         return (self.func(x + self.h) - self.func(x - self.h)) / (2 * self.h)
+class ExponentialFunction:
+    def __init__(self, a):
+        self.a = a
+        self.derivative = Derivative(self)  
 
+    def __call__(self, x):
+        return self.a * np.exp(x)
 
-# class ExponentialFunction:
+if __name__ == "__main__":
+    exp_func = ExponentialFunction(a=2)
 
-#     def init(self, a):
-#         self.a = a
-#         self.derivative = Derivative(self)  
+    print(f"f(0) = {exp_func(0)}")
+    print(f"f'(0) = {exp_func.derivative(0)}")
 
-#     def call(self, x):
-#         return self.a * np.exp(x)
+    x = np.linspace(-2, 2, 100)
+    y = exp_func(x)
+    y_derivative = exp_func.derivative(x)
 
-# func = ExponentialFunction(2)
-# x = np.linspace(-2, 2, 100)
-# y = [func(xi) for xi in x]
-# dy = [func.derivative(xi) for xi in x]
-
-# plt.plot(x, y, label='f(x)')
-# plt.plot(x, dy, label='f\'(x)')
-# plt.xlabel('x')
-# plt.ylabel('y')
-# plt.title('Экспоненциальная функция и её производная')
-# plt.legend()
-# plt.grid(True)
-# # plt.show()
+    plt.figure(figsize=(8, 6))
+    plt.plot(x, y, label="f(x) = 2e^x")
+    plt.plot(x, y_derivative, label="f'(x) = 2e^x")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title("Графики функции и ее производной")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
